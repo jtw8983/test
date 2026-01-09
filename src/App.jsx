@@ -1,10 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { BrowserRouter, Routes, Route } from "react-router";
-import "@/list.css"
-import List from "./pages/List.jsx"
-import Detail from "./pages/Select.jsx"
-import Create from "./pages/Create.jsx"
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router";
+import "@/style.css"
+import { useState } from "react";
+import Main from "@pages/Main.jsx"
+import User from "@pages/User.jsx"
+import SignIn from "@pages/SignIn.jsx"
+import SignUp from "@pages/SignUp.jsx"
+import SignUp1 from "@/pages/SignUp1.jsx";
 
 const Nav = () => {
   return (
@@ -17,28 +20,28 @@ const Nav = () => {
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/new">Create</a>
+              <a className="nav-link" href="/signIn">SignIn</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/detail">Detail</a>
+              <a className="nav-link" href="/signUp">SignUp</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/edit">Update</a>
+              <a className="nav-link" href="/user">User</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/404">404</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/html/List.html" target="_blank">예시화면1</a>
+              <a className="nav-link" href="/html/main.html" target="_blank">예시화면1</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/html/Create.html" target="_blank">예시화면2</a>
+              <a className="nav-link" href="/html/signIn.html" target="_blank">예시화면2</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/html/Select.html" target="_blank">예시화면3</a>
+              <a className="nav-link" href="/html/signUp.html" target="_blank">예시화면3</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/html/Update.html" target="_blank">예시화면4</a>
+              <a className="nav-link" href="/html/user.html" target="_blank">예시화면4</a>
             </li>
           </ul>
         </div>
@@ -55,11 +58,8 @@ const Footer = () => {
   )
 }
 
-const Update = () => {
-  return (
-    <h1 className="text-center">수정 화면</h1>
-  )
-}
+
+
 const NotFound = () => {
   return (
     <div className="text-center">
@@ -70,12 +70,14 @@ const NotFound = () => {
 }
 const App = () => {
   const paths = [
-    {path: "/", element: <List />},
-    {path: "/new", element: <Create />},
-    {path: "/detail", element: <Detail />},
-    {path: "/edit", element: <Update />},
+    {path: "/", element: <Main />},
+    {path: "/signIn", element: <SignIn />},
+    {path: "/signUp", element: <SignUp />},
+    {path: "/signUp1", element: <SignUp1 />},
+    {path: "/user/:i", element: <User />},
     {path: "*", element: <NotFound />},
   ]
+
   return (
     <>
       <Nav />
