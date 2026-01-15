@@ -1,5 +1,5 @@
 import argparse
-from words import list, insert, update, remove
+from index import list, insert, update, remove
 
 parser = argparse.ArgumentParser(desciption="CLI 프로그램")
 subparsers = parser.add_subparsers(dest="command")
