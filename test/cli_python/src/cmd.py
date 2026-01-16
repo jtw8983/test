@@ -1,53 +1,40 @@
 import json
 
-file_path = "./data/memo.json"
-
 def getData():
-    f = open(file_path,"r",encoding= "utf-8")
-    result = json.load(f)
-    f.close()
-    return result
+    f = open("./data/memo.json","r", encoding="utf-8")
+    return json.load(f)
 
-def setData(data):
-    f = open(file_path, "w", encoding= "utf-8")
-    json.dump(data, f, ensure_ascii= False)
-    f.close()
-    list()
-    
+def setData():
+    data = getData()
+    f = json.dump(data, f, ensure_ascii=False)
+    return json.dump(f)
+
+def add(a):
+    data = getData()
+    result = a
+    data["list"].append(result)
+    print(data, result)
+    data = setData()
+
+def remove(b):
+    data = getData()
+    result = b
+    data["list"].remove(b)
+    print(data, result)
+    data = setData()
+
+
+def update(c,d):
+    data = getData()
+    result = d
+    array = data["list"]
+    index = array.index(c)
+    array[index] = d
+    print(data, result)
+    data = setData()
+
 def list():
     data = getData()
-    if len(data["words"])>0:
-        line1 ="=" * 50
-        line2 ="-" * 50
-        print(line1)
-        print(f"번호\t내용")
-        for i in range(len(data["words"])):
-            if i<len(data["words"]):
-                print(line2)
-            print(f"{data["words"][i]["id"]}\t{data["words"][i]["word"]}")
-        print(line1)
-    else:
-        print("데이터가 없습니다.")
-        
-def insert(word):
-    data = getData()
-    id = (max((word["id"] for word in data["words"]),default=0)+1)
-    row = {"id": id , "word": word}
-    data["words"].append(row)
-    setData(data)
-    
-def update(id, word):
-    data = getData()
-    for i in range(len(data["words"])):
-        if data["words"][i]["id"] == int(id):
-            data["words"][i]["word"] == word
-            break
-    setData(data)
-
-def remove(id):
-    data = getData()
-    for i in range(len(data["words"])):
-        if data["words"][i]["id"] == int(id):
-            del data["words"][i]
-            break
-    setData(data)
+    array = data["list"]
+    for i in range(len(array)):
+        print(f"id:{i} name:{array[i]}")
